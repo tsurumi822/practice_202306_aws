@@ -2,34 +2,41 @@ version: '3'
 
 services:
   rails_api:
+  # コンテナ名の指定
+    container_name: example-rails_api-1
     build: ./rails_api
     command: bundle exec rails s -p 3001 -b '0.0.0.0'
     ports:
       - "3001:3001"
     volumes:
       - ./rails_api:/myapp
+  # 標準入出力デバイスを設定
+    tty: true
+    stdin_open: true
     networks:
       - mynetwork
 
   front:
+  # コンテナ名の指定
+    container_name: example-front-1
     build: ./front
     ports:
       - "3000:3000"
     volumes:
       - ./front:/myapp
-      - ./node_modules:/myapp/node_modules
     networks:
       - mynetwork
 
   nginx:
+  # コンテナ名の指定
+    container_name: example-nginx-1
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
-    # image: nginx:1.17
     ports:
       - "80:80"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
+    # Nginxのログ出力を永続化
       - ./nginx/log:/var/log/nginx
     networks:
       - mynetwork
