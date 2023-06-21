@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  rails_api:
+    build: ./rails_api
+    command: bundle exec rails s -p 3001 -b '0.0.0.0'
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./rails_api:/myapp
+    networks:
+      - mynetwork
+
+  front:
+    build: ./front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/myapp
+      - ./node_modules:/myapp/node_modules
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    # image: nginx:1.17
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/log:/var/log/nginx
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
