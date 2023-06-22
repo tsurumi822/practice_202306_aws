@@ -5,7 +5,7 @@ services:
   # コンテナ名の指定
     container_name: example-rails_api-1
     build: ./rails_api
-    command: bundle exec rails s -p 3001 -b '0.0.0.0'
+    command: bundle exec rails s -b '0.0.0.0'
     ports:
       - "3001:3001"
     volumes:
@@ -13,8 +13,7 @@ services:
   # 標準入出力デバイスを設定
     tty: true
     stdin_open: true
-    networks:
-      - mynetwork
+
 
   front:
   # コンテナ名の指定
@@ -24,8 +23,7 @@ services:
       - "3000:3000"
     volumes:
       - ./front:/myapp
-    networks:
-      - mynetwork
+
 
   nginx:
   # コンテナ名の指定
@@ -38,10 +36,5 @@ services:
     volumes:
     # Nginxのログ出力を永続化
       - ./nginx/log:/var/log/nginx
-    networks:
-      - mynetwork
 
-networks:
-  mynetwork:
-    driver: bridge
 

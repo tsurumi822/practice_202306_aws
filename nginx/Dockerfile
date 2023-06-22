@@ -9,4 +9,4 @@ RUN rm -f /etc/nginx/conf.d/*
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 
 # ビルド完了後にNginxを起動
-CMD /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+CMD nginx -g 'daemon off;' -c /etc/nginx/nginx.conf

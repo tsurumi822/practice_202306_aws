@@ -13,3 +13,10 @@ RUN gem install bundler
 RUN bundle install
 
 COPY . /myapp
+
+# puma.sockを配置するディレクトリを作成
+RUN mkdir -p tmp/sockets
+
+EXPOSE 3000
+
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
