@@ -6,21 +6,18 @@ services:
     container_name: example-rails_api-1
     build: ./rails_api
     command: bundle exec rails s -b '0.0.0.0'
-    ports:
-      - "3001:3001"
     volumes:
       - ./rails_api:/myapp
+  # Webサーバー側からpuma.sockを見れるようにするため永続化
+      - ./rails_api/tmp/sockets:/myapp/tmp/sockets
   # 標準入出力デバイスを設定
     tty: true
     stdin_open: true
-
 
   front:
   # コンテナ名の指定
     container_name: example-front-1
     build: ./front
-    ports:
-      - "3000:3000"
     volumes:
       - ./front:/myapp
 
