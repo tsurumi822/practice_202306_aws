@@ -3,4 +3,3 @@ class HelloController < ApplicationController
     render json: { message: 'Hello World' }
   end
 end
-  

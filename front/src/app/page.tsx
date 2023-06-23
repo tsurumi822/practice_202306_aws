@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/hello");
+        const res = await fetch("http://localhost/api/hello");
         const data = await res.json();
         setMessage(data.message);
       } catch (error) {
