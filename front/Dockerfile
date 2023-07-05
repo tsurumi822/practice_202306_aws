@@ -1,6 +1,6 @@
 FROM --platform=linux/x86_64 node:16
 
-WORKDIR /app
+WORKDIR /myapp
 
 COPY package.json ./
 COPY package-lock.json ./
