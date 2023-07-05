@@ -4,6 +4,7 @@ services:
   rails_api:
   # コンテナ名の指定
     container_name: example-rails_api-1
+    image: 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api
     build: ./rails_api
     command: bundle exec rails s
     volumes:
@@ -17,6 +18,7 @@ services:
   front:
   # コンテナ名の指定
     container_name: example-front-1
+    image: 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front
     build: ./front
     ports:
       - "3000:3000"
@@ -26,6 +28,7 @@ services:
   nginx:
   # コンテナ名の指定
     container_name: example-nginx-1
+    image: 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
     build:
       context: .
       dockerfile: ./nginx/Dockerfile

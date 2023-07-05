@@ -1,4 +1,4 @@
-FROM ruby:3.2.2
+FROM --platform=linux/x86_64 ruby:3.2.2
 
 ENV LANG C.UTF-8
 
