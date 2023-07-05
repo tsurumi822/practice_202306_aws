@@ -15,5 +15,8 @@ RUN bundle install
 RUN mkdir -p tmp/sockets
 COPY . /myapp
 
+VOLUME /myapp/public
+VOLUME /myapp/tmp
+
 
 CMD ["bundle", "exec", "puma", "-b", "config/puma.rb"]

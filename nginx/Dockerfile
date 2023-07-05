@@ -8,5 +8,9 @@ RUN rm -f /etc/nginx/conf.d/*
 # Nginxの設定ファイルをコンテナにコピー
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 
+VOLUME /var/log/nginx
+VOLUME /myapp/public
+VOLUME /myapp/tmp
+
 # ビルド完了後にNginxを起動
 CMD nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
