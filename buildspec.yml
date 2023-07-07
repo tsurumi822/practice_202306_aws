@@ -4,13 +4,12 @@ env:
   variables:
     AWS_DEFAULT_REGION: ap-northeast-1
     AWS_ACCONT_ID: 669754723549
-    IMAGE_REPO_NAME: test-tsurumi
-    IMAGE_TAG: latest
+    IMAGE_REPO_NAME: h4b-ecs-helloworld
+    IMAGE_TAG: nginx
 
 phases: 
   build: 
     commands:
      - aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com
-     - docker build -t test-tsurumi .
-     - docker tag test-tsurumi:latest 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/test-tsurumi:latest
-     - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/test-tsurumi:latest
+     - docker tag h4b-ecs-helloworld:latest 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
+     - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
