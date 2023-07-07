@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     AWS_DEFAULT_REGION: ap-northeast-1
-    AWS_ACCONT_ID: 669754723549
+    AWS_ACCOUNT_ID: 669754723549
     IMAGE_REPO_NAME: h4b-ecs-helloworld
 
 phases: 
@@ -24,3 +24,7 @@ phases:
      - docker build -t 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx .
      - docker tag 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
      - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
+
+artifacts:
+  files:
+   - imagedefinitions.json
