@@ -25,7 +25,9 @@ phases:
      - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api
      - docker tag 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
      - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
-     - echo '[{"name":"front","imageUri":"669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front"},{"name":"rails_api","imageUri":"669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api"},{"name":"nginx","imageUri":"669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx"}]' > imagedefinitions.json
+     - echo '[{"name":"front","imageUri":"'$AWS_ACCOUNT_ID'.dkr.ecr.'$AWS_DEFAULT_REGION'.amazonaws.com/'$IMAGE_REPO_NAME':front"},{"name":"rails_api","imageUri":"'$AWS_ACCOUNT_ID'.dkr.ecr.'$AWS_DEFAULT_REGION'.amazonaws.com/'$IMAGE_REPO_NAME':rails_api"},{"name":"nginx","imageUri":"'$AWS_ACCOUNT_ID'.dkr.ecr.'$AWS_DEFAULT_REGION'.amazonaws.com/'$IMAGE_REPO_NAME':nginx"}]' > $CODEBUILD_SRC_DIR/imagedefinitions.json
+     - echo "Generated imagedefinitions.json"
+     - cat $CODEBUILD_SRC_DIR/imagedefinitions.json
 
 artifacts:
   files:
