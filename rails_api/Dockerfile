@@ -1,7 +1,7 @@
 FROM --platform=linux/x86_64 ruby:3.2.2
 
 ENV LANG C.UTF-8
-ENV RAILS_ENV=production
+# ENV RAILS_ENV=production
 
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
