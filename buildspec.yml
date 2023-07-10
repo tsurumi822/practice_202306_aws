@@ -12,19 +12,21 @@ phases:
      - aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com
      - cd front
      - docker build -t 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front .
-     - docker tag 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front
-     - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front
-
      - cd ../rails_api
      - docker build -t 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api .
-     - docker tag 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api
-     - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api
-
      - cd ../nginx
      - docker build -t 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx .
+     
+  post_build:
+    commands:
+     - docker tag 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front
+     - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front
+     - docker tag 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api
+     - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api
      - docker tag 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
      - docker push 669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx
      - echo '[{"name":"front","imageUri":"669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:front"},{"name":"rails_api","imageUri":"669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:rails_api"},{"name":"nginx","imageUri":"669754723549.dkr.ecr.ap-northeast-1.amazonaws.com/h4b-ecs-helloworld:nginx"}]' > imagedefinitions.json
+
 artifacts:
   files:
    - imagedefinitions.json
