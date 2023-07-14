@@ -27,7 +27,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 ## Nginx用の設定を追加
 # ファイルがある場所から2個上の階層をapp_rootとする
-app_root = File.expand_path("../..", __FILE__)
+# app_root = File.expand_path("../..", __FILE__)
 # unixソケットを使う設定
 # bind "unix://#{app_root}/tmp/sockets/puma.sock"
 bind "unix:///myapp/tmp/sockets/puma.sock"

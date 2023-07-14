@@ -22,6 +22,6 @@ VOLUME /myapp/tmp
 
 
 
-CMD ["bundle", "exec", "puma", "-b", "config/puma.rb"]
+CMD ["bundle", "exec", "puma", "-C", "/myapp/config/puma.rb"]
 
 # CMD ["tail", "-f", "/dev/null"]
