@@ -6,7 +6,8 @@ RUN rm -f /etc/nginx/conf.d/*
 
 
 # Nginxの設定ファイルをコンテナにコピー
-COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+# COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 
 VOLUME /var/log/nginx
 VOLUME /myapp/public
